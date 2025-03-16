@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+
+<TabPane fx:id="mainTabPane" xmlns="http://javafx.com/javafx/17"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.ayoub_chaib.clinic_manager.controllers.MainController">
+    <tabs>
+        <Tab text="Patients" id="patientsTab">
+            <fx:include fx:id="patientsContent" source="patient_form.fxml" />
+        </Tab>
+        <Tab text="Consultations" id="consultationsTab">
+            <fx:include fx:id="consultationsContent" source="consultation_form.fxml" />
+        </Tab>
+        <Tab text="Dashboard">
+            <fx:include source="dashboard.fxml" />
+        </Tab>
+    </tabs>
+</TabPane>
