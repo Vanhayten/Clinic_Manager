@@ -8,6 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class PatientController {
     private final PatientService patientService = new PatientService();
     private final ObservableList<Patient> patients = FXCollections.observableArrayList();
@@ -20,17 +23,25 @@ public class PatientController {
     @FXML private TableView<Patient> patientTable;
     @FXML private TableColumn<Patient, String> colId;
     @FXML private TableColumn<Patient, String> colName;
+    @FXML private TableColumn<Patient, LocalDate> colDateBirth;
+    @FXML private TableColumn<Patient, String> colGender;
+    @FXML private TableColumn<Patient, String> colPhone;
+    @FXML private TableColumn<Patient, String> colAddress;
 
     @FXML
     public void initialize() {
         setupTable();
         loadPatients();
-        cmbGender.getItems().addAll("Male", "Female", "Other");
+        cmbGender.getItems().addAll("Male", "Female");
     }
 
     private void setupTable() {
         colId.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         colName.setCellValueFactory(cellData -> cellData.getValue().fullNameProperty());
+        colDateBirth.setCellValueFactory(cellData -> cellData.getValue().dateOfBirthProperty());
+        colGender.setCellValueFactory(cellData -> cellData.getValue().genderProperty());
+        colPhone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
+        colAddress.setCellValueFactory(cellData -> cellData.getValue().addressProperty());
         patientTable.setItems(patients);
     }
 

@@ -51,6 +51,10 @@
         <columns>
             <TableColumn text="ID" fx:id="colId" prefWidth="100"/>
             <TableColumn text="Name" fx:id="colName" prefWidth="200"/>
+            <TableColumn text="Date of Birth" fx:id="colDateBirth" prefWidth="200"/>
+            <TableColumn text="Gender" fx:id="colGender" prefWidth="200"/>
+            <TableColumn text="Phone" fx:id="colPhone" prefWidth="200"/>
+            <TableColumn text="Address" fx:id="colAddress" prefWidth="200"/>
         </columns>
     </TableView>
 </VBox>

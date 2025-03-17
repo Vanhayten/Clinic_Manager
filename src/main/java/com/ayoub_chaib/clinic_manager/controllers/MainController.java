@@ -14,21 +14,20 @@ public class MainController {
     @FXML private Tab consultationsTab;
     @FXML private Tab dashboardTab;
 
-    @FXML private PatientController patientController;
+    @FXML private PatientController patientsContentController;
     @FXML private ConsultationController consultationsContentController;
-    @FXML private DashboardController dashboardController;
+    @FXML private DashboardController dashboardContentController;
 
     @FXML
     public void initialize() {
-        // When a tab is selected, refresh the corresponding view.
         mainTabPane.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldTab, newTab) -> {
                     if (newTab == patientsTab) {
-                        patientController.refreshTable();
+                        patientsContentController.refreshTable();
                     } else if (newTab == consultationsTab) {
                         consultationsContentController.refreshTable();
                     } else if (newTab == dashboardTab) {
-                        dashboardController.loadDashboardData();
+                        dashboardContentController.loadDashboardData();
                     }
                 }
         );

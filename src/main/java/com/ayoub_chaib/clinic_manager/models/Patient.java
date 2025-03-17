@@ -19,6 +19,11 @@ public class Patient {
         this.dateOfBirth.set(dateOfBirth);
     }
 
+    @Override
+    public String toString() {
+        return getFullName();
+    }
+
     // Property getters
     public StringProperty idProperty() { return id; }
     public StringProperty fullNameProperty() { return fullName; }

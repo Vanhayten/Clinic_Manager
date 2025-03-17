@@ -1,6 +1,8 @@
 package com.ayoub_chaib.clinic_manager.services;
 
 import com.ayoub_chaib.clinic_manager.models.Patient;
+import javafx.collections.ObservableList;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +20,7 @@ public class PatientService {
         return db.getAllPatients();
     }
 
-    public List<String> getPatientIds() {
-        return db.getPatientIds();
+    public ObservableList<Patient> getAllPatientsObservable() {
+        return db.getAllPatientsObservable();
     }
 }

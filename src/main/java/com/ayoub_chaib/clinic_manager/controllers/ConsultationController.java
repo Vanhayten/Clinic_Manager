@@ -1,6 +1,7 @@
 package com.ayoub_chaib.clinic_manager.controllers;
 
 import com.ayoub_chaib.clinic_manager.models.Consultation;
+import com.ayoub_chaib.clinic_manager.models.Patient;
 import com.ayoub_chaib.clinic_manager.services.ConsultationService;
 import com.ayoub_chaib.clinic_manager.services.PatientService;
 import com.ayoub_chaib.clinic_manager.utils.AlertUtil;
@@ -8,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -17,7 +20,7 @@ public class ConsultationController {
     private final PatientService patientService = new PatientService();
     private final ObservableList<Consultation> consultations = FXCollections.observableArrayList();
 
-    @FXML private ComboBox<String> cmbPatients;
+    @FXML private ComboBox<Patient> cmbPatients;
     @FXML private DatePicker datePicker;
     @FXML private TextField txtHour;
     @FXML private TextField txtDiagnosis;
@@ -34,7 +37,7 @@ public class ConsultationController {
         System.out.println("colFee initialized: " + (colFee != null));
         setupTable();
         loadConsultations();
-        loadPatients();
+        setupPatientComboBox();
     }
 
     private void setupTable() {
@@ -49,8 +52,29 @@ public class ConsultationController {
         consultations.setAll(consultationService.getAllConsultations());
     }
 
-    private void loadPatients() {
-        cmbPatients.getItems().setAll(patientService.getPatientIds());
+    private void setupPatientComboBox() {
+
+        cmbPatients.setItems(patientService.getAllPatientsObservable());
+
+        cmbPatients.setCellFactory(param -> new ListCell<Patient>() {
+            @Override
+            protected void updateItem(Patient patient, boolean empty) {
+                super.updateItem(patient, empty);
+                setText(empty ? null : patient.getFullName());
+            }
+        });
+
+        cmbPatients.setConverter(new StringConverter<Patient>() {
+            @Override
+            public String toString(Patient patient) {
+                return patient == null ? "" : patient.getFullName();
+            }
+
+            @Override
+            public Patient fromString(String string) {
+                return null;
+            }
+        });
     }
 
     @FXML
@@ -58,12 +82,20 @@ public class ConsultationController {
         try {
             if (!validateInput()) return;
 
+            Patient selectedPatient = cmbPatients.getValue();
+            if (selectedPatient == null) {
+                AlertUtil.showError("Please select a patient!");
+                return;
+            }
+
+            String patientId = selectedPatient.getId();
+
             LocalDate date = datePicker.getValue();
             LocalTime time = LocalTime.parse(txtHour.getText());
             LocalDateTime dateTime = LocalDateTime.of(date, time);
 
             Consultation consultation = new Consultation();
-            consultation.setPatientId(cmbPatients.getValue());
+            consultation.setPatientId(patientId);
             consultation.setDateTime(dateTime);
             consultation.setDiagnosis(txtDiagnosis.getText());
             consultation.setTreatment(txtTreatment.getText());
