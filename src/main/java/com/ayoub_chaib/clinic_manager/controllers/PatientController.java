@@ -71,7 +71,6 @@ public class PatientController {
         }
         return true;
     }
-
     @FXML
     private void clearForm() {
         txtFullName.clear();

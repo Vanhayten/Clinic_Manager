@@ -23,7 +23,7 @@
             <ColumnConstraints prefWidth="300"/>
         </columnConstraints>
 
-        <Label text="Patient:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label text="Patient ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
         <ComboBox fx:id="cmbPatients" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
         <Label text="Date:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
@@ -38,7 +38,7 @@
         <Label text="Treatment:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
         <TextArea fx:id="txtTreatment" GridPane.rowIndex="4" GridPane.columnIndex="1" prefRowCount="3"/>
 
-        <Label text="Fee:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <Label text="Fee (MAD):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
         <TextField fx:id="txtFee" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
     </GridPane>
 
@@ -55,6 +55,7 @@
             <TableColumn text="ID" fx:id="colConsultId" prefWidth="100"/>
             <TableColumn text="Date/Time" fx:id="colDateTime" prefWidth="200"/>
             <TableColumn text="Diagnosis" fx:id="colDiagnosis" prefWidth="300"/>
+            <TableColumn text="Fee" fx:id="colFee" prefWidth="100"/>
         </columns>
     </TableView>
 </VBox>

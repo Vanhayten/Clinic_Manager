@@ -27,9 +27,11 @@ public class ConsultationController {
     @FXML private TableColumn<Consultation, String> colConsultId;
     @FXML private TableColumn<Consultation, LocalDateTime> colDateTime;
     @FXML private TableColumn<Consultation, String> colDiagnosis;
+    @FXML private TableColumn<Consultation, Double> colFee;
 
     @FXML
     public void initialize() {
+        System.out.println("colFee initialized: " + (colFee != null));
         setupTable();
         loadConsultations();
         loadPatients();
@@ -39,6 +41,7 @@ public class ConsultationController {
         colConsultId.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         colDateTime.setCellValueFactory(cellData -> cellData.getValue().dateTimeProperty());
         colDiagnosis.setCellValueFactory(cellData -> cellData.getValue().diagnosisProperty());
+        colFee.setCellValueFactory(cellData -> cellData.getValue().feeProperty().asObject());
         consultationTable.setItems(consultations);
     }
 

@@ -5,13 +5,14 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <BarChart title="Monthly Consultations">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ayoub_chaib.clinic_manager.controllers.DashboardController">
+    <BarChart fx:id="barChart" title="Monthly Consultations">
         <xAxis>
-            <CategoryAxis label="Month" />
+            <CategoryAxis fx:id="xAxis" label="Month"/>
         </xAxis>
         <yAxis>
-            <NumberAxis label="Number of Consultations" />
+            <NumberAxis fx:id="yAxis" label="Number of Consultations"/>
         </yAxis>
     </BarChart>
 </VBox>
